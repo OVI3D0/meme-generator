@@ -1,0 +1,9 @@
+.header-body {
+    background: rgb(13, 13, 13);
+    background: linear-gradient(90deg, rgba(13, 13, 13, 1) 0%, rgba(103, 34, 128, 1) 39%);
+    color: white;
+}
+
+.troll-img {
+    max-width: 10rem;
+}
