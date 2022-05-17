@@ -12,3 +12,8 @@
 .memebtn:hover {
     background: black;
 }
+
+.meme-img {
+    max-width: 50%;
+    max-height: 50%;
+}
