@@ -17,3 +17,8 @@
     max-width: 50%;
     max-height: 50%;
 }
+
+.top-text, .bottom-text {
+    margin: 0 auto;
+    color: white;
+}
