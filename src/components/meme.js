@@ -1,6 +1,5 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import '../styles/meme.css';
-import memesData from '../memesData.js';
 
 function Meme() {
 
@@ -10,12 +9,17 @@ function Meme() {
         randomImage: "http://i.imgflip.com/1bij.jpg"
     });
 
-    const [allMemeImages, setAllMemeImages] = useState(memesData);
+    const [allMemeImages, setAllMemeImages] = useState([]);
+
+    useEffect(() => {
+        fetch("https://api.imgflip.com/get_memes")
+            .then(res => res.json())
+            .then(data => setAllMemeImages(data.data.memes))
+    }, [])
 
     function memeClick() {
-        const memesArray = allMemeImages.data.memes
-        const randomNumber = Math.floor(Math.random() * memesArray.length)
-        const url = memesArray[randomNumber].url
+        const randomNumber = Math.floor(Math.random() * allMemeImages.length)
+        const url = allMemeImages[randomNumber].url
         setMeme(prevMeme => ({
             ...prevMeme,
             randomImage: url
@@ -38,7 +42,7 @@ function Meme() {
             <div className="d-flex justify-content-around pt-5 mt-5">
                 <input 
                     type="text" 
-                    class="form-control" 
+                    className="form-control" 
                     id="topText" 
                     placeholder="Top text" 
                     name="topText"
@@ -47,7 +51,7 @@ function Meme() {
                 />
                 <input 
                     type="text" 
-                    class="form-control" 
+                    className="form-control" 
                     id="bottomText" 
                     placeholder="Bottom text" 
                     name="bottomText"
